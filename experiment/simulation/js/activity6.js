@@ -1,220 +1,121 @@
-var act6_ob_btn = `<button id="panel1_btn" class="btn btn-primary" onclick="complete_table_3();" style="position: absolute; bottom: 8vh; width: 85%;">Next</button>`;
-var act6_ob_btn_1 = `<button id="panel1_btn" class="btn btn-primary" onclick="draw_chart();" style="position: absolute; bottom: 8vh; width: 85%;">Plot Graph</button>`;
-var act6_tab3_btn = `<button id="panel1_btn"  class="btn btn-primary" onclick="add_tab3();" style="position: absolute; bottom: 8vh; width: 85%;">Next</button>`;
-function first_solution(index) {
-    for (let i = 0; i < 3; i++) {
-        let ele = document.getElementsByClassName(`sol${index}`)[i];
-        ele.style.display = 'inline';
-    }
-    if (index == 3) {
-        let btn = document.getElementById("panel1_btn");
-        btn.style.display = 'block';
-    }
-}
-var k_values = '<p>K values = [<span id="k-values"></span>]</p>';
 function activity6() {
     pp.clearleftpannel();
     pp.clearrightpannel();
     pp.addoffcanvas(3);
-    pp.showtitle("Table for Average Conductivity", 3);
-    pp.showdescription(' <p style="background-color: #f4ccccff; border-radius: 10px; border: black; padding: 5%; font-weight: 500; font-size: calc(0.7vw + 12px);">Calculate and input the K_Avg value. <br>  K_avg = (K<sub>1</sub> + K<sub>2</sub> + K<sub>3</sub> + ..... K<sub>n</sub>) / n</p>', 3);
-    // var bsOffcanvas = new bootstrap.Offcanvas(
-    //     document.getElementById("offcanvasRight3")
-    //   );
-    //   bsOffcanvas.show();
-    // pp.addtoleftpannel(k_values);
-    // load_k_values();
-    add_std_dev_tab2();
-    var obs_table_2 = `
-<table class="table" style="height: 35%">
-<thead>
-  <tr>
-    <th rowspan="2">Sample</th>
-    <th colspan="3">Mass (gm)</th>
-    <th></th>
-    <th></th>
-    <th  colspan="3">Area of GC</th> 
-    <th></th>
-    <th></th>
-  </tr>
+    let right_panel_text = `
+    <div>
 
-  <tr>
-  
-  <th>Comp_1</th>
-  <th>Comp_2</th>
-  <th>External Std</th>
-  <th>Comp-1</th>
-  <th>Comp-2</th>
-  <th>External Std</th>
-</tr>
+    <div>
+        <p style="font-weight: bold; font-size: calc(0.7vw + 6px); background-color: black; color: white; padding-left: 2%;">Mass</p>
+        <label for="">Mass of mixture A</label>
+        <input disabled value='${Ma}' class='form-control' type="text" id='ma-val' />
+        <br>
+        <label for="">Mass of External Std. C</label>
+        <input disabled value='${Mc}' class='form-control' type="text" id='mc-val' />
+    </div>
 
-</thead>
-<tbody id="obt3-body">
+    <br>
 
+    <div>
+        <p style="font-weight: bold; font-size: calc(0.7vw + 6px); background-color: black; color: white; padding-left: 2%;">Molecular Weight</p>
+        <label for="">Molecular Weight M1</label>
+        <input disabled value='${MW1}' class='form-control' type="text" id='mw1-val' />
+        <br>
+        <label for="">Molecular Weight M2</label>
+        <input disabled value='${MW2}' class='form-control' type="text" id='mw2-val' />
+    </div>
 
-<tr>
-    <td><button class="btn btn-primary" onclick="first_solution(0);">Cal_1</button></td>
-    <td>${table_2_data[0][0].toFixed(4)}</td>
-    <td>${table_2_data[0][1].toFixed(4)}</td>
-    <td>${table_2_data[0][2].toFixed(4)}</td>
-    <td ><span style="display: none;" class="sol0">${table_2_data[0][3].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol0">${table_2_data[0][4].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol0">${table_2_data[0][5].toFixed(4)}</span></td>
-</tr>
+    <br>
 
-<tr>
-    <td><button class="btn btn-primary"  onclick="first_solution(1);">Cal_2</button></td>
-    <td>${table_2_data[1][0].toFixed(4)}</td>
-    <td>${table_2_data[1][1].toFixed(4)}</td>
-    <td>${table_2_data[1][2].toFixed(4)}</td>
-    <td ><span style="display: none;" class="sol1">${table_2_data[1][3].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol1">${table_2_data[1][4].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol1">${table_2_data[1][5].toFixed(4)}</span></td>
-</tr>
+    <div>
+        <p style="font-weight: bold; font-size: calc(0.7vw + 6px); background-color: black; color: white; padding-left: 2%;">GC Area</p>
+        <label for="">Area of Comp1, AA</label>
+        <input disabled value='${AA}' class='form-control' type="text" id='aa-val' />
+        <br>
+        <label for="">Area of Comp2, AB</label>
+        <input disabled value='${AB}' class='form-control' type="text" id='ab-val' />
+        <br>
+        <label for="">Area of External Std, AC</label>
+        <input disabled value='${AC}' class='form-control' type="text" id='ac-val' />
+    </div>
 
+    <br>
 
-<tr>
-    <td><button class="btn btn-primary"  onclick="first_solution(2);">Cal_3</button></td>
-    <td>${table_2_data[2][0].toFixed(4)}</td>
-    <td>${table_2_data[2][1].toFixed(4)}</td>
-    <td>${table_2_data[2][2].toFixed(4)}</td>
-    <td ><span style="display: none;" class="sol2">${table_2_data[2][3].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol2">${table_2_data[2][4].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol2">${table_2_data[2][5].toFixed(4)}</span></td>
-</tr>
+    <div>
+        <p style="font-weight: bold; font-size: calc(0.7vw + 6px); background-color: black; color: white; padding-left: 2%;">Slope Values</p>
+        <label for="">Slope 1</label>
+        <input disabled value='${slope1}' class='form-control' type="text" id='slope1-val' />
+        <br>
+        <label for="">Slope 2</label>
+        <input disabled value='${slope2}' class='form-control' type="text" id='slope2-val' />
+    </div>
 
-
-<tr>
-    <td><button class="btn btn-primary" onclick="first_solution(3);">Cal_4</button></td>
-    <td>${table_2_data[3][0].toFixed(4)}</td>
-    <td>${table_2_data[3][1].toFixed(4)}</td>
-    <td>${table_2_data[3][2].toFixed(4)}</td>
-    <td ><span style="display: none;" class="sol3">${table_2_data[3][3].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol3">${table_2_data[3][4].toFixed(4)}</span></td>
-    <td ><span style="display: none;" class="sol3">${table_2_data[3][5].toFixed(4)}</span></td>
-</tr>
-</tbody>
-</table>
-`;
-    pp.addtoleftpannel(obs_table_2);
-    calculate_tab3_data();
-    pp.addtorightpannel(act6_tab3_btn, 3);
-    let btn = document.getElementById("panel1_btn");
-    btn.style.display = 'none';
+    </div>
+    `;
+    pp.addtorightpannel(right_panel_text, 3);
+    // first table
+    let activity6_table_heading1 = ["Comp", "Mass", "Calculation Formula"];
+    let verification_row_1 = [
+        [`Comp 1`, `<input type='text' class='form-control' id='mass-inp-1' />`, `AA / (AC * slope1)`],
+        [`Comp 2`, `<input type='text' class='form-control' id='mass-inp-2' />`, 'AB / (AC * slope2)']
+    ];
+    let act6_tb1 = new Table2(activity6_table_heading1, verification_row_1, "h-1", "b-1", "Mass");
+    //seond table
+    let activity6_table_heading2 = ["Comp", "Moles", "Calculation Formula"];
+    let verification_row_2 = [
+        [`Comp 1`, `<input type='text' class='form-control' id='moles-inp-1' />`, 'mass_comp_1 / M1'],
+        [`Comp 2`, `<input type='text' class='form-control' id='moles-inp-2' />`, 'mass_comp_2 / M2']
+    ];
+    let act6_tb2 = new Table2(activity6_table_heading2, verification_row_2, "h-2", "b-2", "Moles");
+    //third table
+    let activity6_table_heading3 = ["Comp", "Mole Fraction", "Calculation Formula"];
+    let verification_row_3 = [
+        [`Comp 1`, `<input type='text' class='form-control' id='moles-fraction-inp-1' />`, 'moles_comp_1 / (moles_comp_1 + moles_comp_2)'],
+        [`Comp 2`, `<input type='text' class='form-control' id='moles-fraction-inp-2' />`, '1 - moles_comp_1']
+    ];
+    let act6_tb3 = new Table2(activity6_table_heading3, verification_row_3, "h-3", "b-3", "Mole Fraction");
+    pp.addtoleftpannel(act6_tb1.template);
+    pp.addtoleftpannel(act6_tb2.template);
+    pp.addtoleftpannel(act6_tb3.template);
+    act6_tb1.draw();
+    act6_tb2.draw();
+    act6_tb3.draw();
+    let next_btn = `<button id="next_btn" class="btn btn-primary" style="text-align: center; margin-left: 45%;" onclick="verify_act6_inputs();">Verify</button>`;
+    pp.addtoleftpannel(next_btn);
+    console.log(mass_comp1, mass_comp2, moles_comp1, moles_comp2, moles_fraction_comp1, moles_fraction_comp2);
 }
-function add_std_dev_tab2() {
-    for (let i = 0; i < table_2_data.length; i++) {
-        for (let j = 0; j < table_2_data[i].length; j++) {
-            table_2_data[i][j] = std_deviation(table_2_data[i][j]);
-        }
-    }
-}
-function calculate_tab3_data() {
-    for (let i = 0; i < table_2_data.length; i++) {
-        table_3[i] = [];
-        table_3[i][0] = table_2_data[i][0] / table_2_data[i][2];
-        table_3[i][1] = table_2_data[i][1] / table_2_data[i][2];
-        table_3[i][2] = table_2_data[i][3] / table_2_data[i][4];
-        table_3[i][3] = table_2_data[i][4] / table_2_data[i][5];
-    }
-}
-function add_tab3() {
-    document.getElementById('panel1_btn').remove();
-    var tab3 = `
-  <table class="table" style="height: 35%">
-  <thead>
-    <tr>
-      <th id="act6-check" rowspan="2">Check</th>
-      <th colspan="2">Mass (gm)</th>
-      <th></th>
-      <th  colspan="2">Area of GC</th> 
-      <th></th>
-    </tr>
-  
-    <tr>
-    
-    <th>Comp_1/External Std.</th>
-    <th>Comp_2/External Std.</th>
-    <th>Comp-1/External Std.</th>
-    <th>Comp-2/External Std.</th>
-  </tr>
-  
-  </thead>
-  <tbody id="obt4-body">
-  
-  
-  <tr>
-      <td><button class="btn btn-primary" onclick="verify_tab3();">Verify</button></td>
-      <td><input type="text" name="" id="act6-inp1"></td>
-      <td><input type="text" name="" id="act6-inp2"></td>
-      <td><input type="text" name="" id="act6-inp3"></td>
-      <td><input type="text" name="" id="act6-inp4"></td>
-  </tr>
-
-  </tbody>
-  </table>
-  `;
-    pp.addtoleftpannel(tab3);
-}
-function verify_tab3() {
-    let val1 = document.getElementById("act6-inp1");
-    let val2 = document.getElementById("act6-inp2");
-    let val3 = document.getElementById("act6-inp3");
-    let val4 = document.getElementById("act6-inp4");
-    console.log(parseFloat(val1.value));
-    // console.log(Q.value, To.value, Ti.value, ti.value, to.value);
-    if (!verify_values(parseFloat(val1.value), table_3[0][0])) {
-        console.log("please input the correct Comp_1/External Std value for mass");
+function verify_act6_inputs() {
+    let val1 = document.getElementById(`mass-inp-1`);
+    let val2 = document.getElementById(`mass-inp-2`);
+    let val3 = document.getElementById(`moles-inp-1`);
+    let val4 = document.getElementById(`moles-inp-2`);
+    let val5 = document.getElementById(`moles-fraction-inp-1`);
+    let val6 = document.getElementById(`moles-fraction-inp-2`);
+    if (!verify_values(parseFloat(val1.value), mass_comp1)) {
+        alert(`please check first Comp 1 value`);
         return;
     }
-    if (!verify_values(parseFloat(val2.value), table_3[0][1])) {
-        console.log("please input the Comp_2/External Std value for mass");
+    if (!verify_values(parseFloat(val2.value), mass_comp2)) {
+        alert(`please check first Comp 2 value`);
         return;
     }
-    if (!verify_values(parseFloat(val3.value), table_3[0][2])) {
-        console.log("please input the second correct Comp_1/External Std value for area of GC");
+    if (!verify_values(parseFloat(val3.value), moles_comp1)) {
+        alert(`please check first Enternal Std value`);
         return;
     }
-    if (!verify_values(parseFloat(val4.value), table_3[0][3])) {
-        console.log("please input the second correct Comp_2/External Std value for area of GC");
+    if (!verify_values(parseFloat(val4.value), moles_comp2)) {
+        alert(`please check Second Comp 1 value`);
         return;
     }
-    pp.showdescription('<p style="background-color: #f4ccccff; border-radius: 10px; border: black; padding: 5%; font-weight: 500; font-size: calc(0.7vw + 12px);">Click next to complete the table</p>', 3);
-    pp.addtorightpannel(act6_ob_btn, 3);
-    // var bsOffcanvas = new bootstrap.Offcanvas(
-    //   document.getElementById("offcanvasRight3")
-    // );
-    // bsOffcanvas.show();
-    complete_table_3();
-}
-// function load_k_values() {
-//     let ele = document.getElementById('k-values');
-//     for(let i=0; i<main_table_data.length; i++) {
-//         ele.innerText += `${main_table_data[i][8] + ", "}`
-//     }
-// }
-function complete_table_3() {
-    let table_body = document.getElementById('obt4-body');
-    document.getElementById('act6-check').remove();
-    // document.getElementById('act6-verify-btn').remove();
-    table_body.innerHTML = ``;
-    // close_offcanvas();
-    document.getElementById('panel1_btn').remove();
-    pp.showdescription('<p style="background-color: #f4ccccff; border-radius: 10px; border: black; padding: 5%; font-weight: 500; font-size: calc(0.7vw + 12px);">Table with all the calculated values</p>', 3);
-    pp.addtorightpannel(act6_ob_btn_1, 3);
-    for (let i = 0; i < table_3.length; i++) {
-        let row = document.createElement('tr');
-        let val1 = table_3[i][0].toFixed(4).toString(4);
-        let val2 = table_3[i][1].toFixed(4);
-        let val3 = table_3[i][2].toFixed(4);
-        let val4 = table_3[i][3].toFixed(4);
-        row.innerHTML = `
-        <td>${val1}</td>
-        <td>${val2}</td>
-        <td>${val3}</td>
-        <td>${val4}</td>
-        `;
-        table_body.append(row);
+    if (!verify_values(parseFloat(val5.value), moles_fraction_comp1)) {
+        alert(`please check Second Comp 2 value`);
+        return;
     }
+    if (!verify_values(parseFloat(val6.value), moles_fraction_comp2)) {
+        alert(`please check Second External Std value`);
+        return;
+    }
+    alert("all values are right!!");
+    activity7();
 }
 //# sourceMappingURL=activity6.js.map

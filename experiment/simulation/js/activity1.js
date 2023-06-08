@@ -52,7 +52,7 @@ function activity1() {
     //define the canvas
     pp.addcanvas('mycanvas');
     // pp.addtorightpannel(question_div_box, 3);
-    pp.showtitle(`<p id="exp-title">Let's Identify the components required to study the <span id="des"> Heat Transfer Coefficient under Turbulent Conditions</span><p>`, 3);
+    pp.showtitle(`<p id="exp-title">Vapour Liquid Equilibrium</span><p>`, 3);
     pp.showscore(0, 3);
     canvas = pp.canvas;
     context = canvas.getContext('2d');
@@ -102,48 +102,39 @@ function a1_canvas_mapping() {
     context.scale(1, -1);
 }
 function a1_draw_all_components() {
-    var sq = new Chemistry.Custome_image(tank, new Chemistry.Point(600, 200), 500, 280, canvas);
-    sq.name = "tank";
+    var sq = new Chemistry.Custome_image(ballast_tank, new Chemistry.Point(600, 200), 127, 317, canvas);
+    sq.name = "ballast_tank";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(pump, new Chemistry.Point(1450, 170), 350, 246.86, canvas);
-    sq.name = "pump";
+    var sq = new Chemistry.Custome_image(condenser, new Chemistry.Point(1450, 170), 64, 232, canvas);
+    sq.name = "condenser";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(test_section, new Chemistry.Point(1650, 600), 420, 550, canvas);
-    sq.name = "test_section";
+    var sq = new Chemistry.Custome_image(n2_tank, new Chemistry.Point(1650, 600), 75, 209, canvas);
+    sq.name = "n2_tank";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(horizontal_pipe, new Chemistry.Point(280, 830), 364, 151, canvas);
-    sq.name = "horizontal_pipe";
+    var sq = new Chemistry.Custome_image(dimmer_stat, new Chemistry.Point(280, 830), 59, 59, canvas);
+    sq.name = "dimmer_stat";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(vertical_pipe, new Chemistry.Point(150, 220), 80, 314, canvas);
-    sq.name = "vertical_pipe";
+    var sq = new Chemistry.Custome_image(connector, new Chemistry.Point(150, 220), 44, 35, canvas);
+    sq.name = "connector";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(rotometer, new Chemistry.Point(230, 580), 100, 302.8, canvas);
-    sq.name = "rotometer";
+    var sq = new Chemistry.Custome_image(temp_indicator, new Chemistry.Point(230, 580), 139, 90, canvas);
+    sq.name = "temp_indicator";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(heater, new Chemistry.Point(1150, 400), 350, 68.6, canvas);
-    sq.name = "heater";
-    scene.add(sq);
-    var sq = new Chemistry.Custome_image(temp_controller, new Chemistry.Point(1150, 700), 320, 313.6, canvas);
-    sq.name = "temp_controller";
-    scene.add(sq);
-    var sq = new Chemistry.Custome_image(t_in, new Chemistry.Point(600, 550), 170, 200, canvas);
-    sq.stang = -90;
-    sq.name = "t_in";
+    var sq = new Chemistry.Custome_image(ebulliometer, new Chemistry.Point(1150, 400), 107, 273, canvas);
+    sq.name = "ebulliometer";
     scene.add(sq);
 }
 //list of all activity 1 questions
 function a1_load_questions() { }
 {
     question = [];
-    question.push({ srno: 1, question: "Select <span style='color: #018fc3'>Pump</span>", ans: "pump", hint: ["Has Suction and Discharge", "Has valve attached", "Triangular Base"] });
-    question.push({ srno: 2, question: "Select <span style='color: #018fc3'> Tank </span>", ans: "tank", hint: ["Rectangular", "Mounted Vertically", "Has valves attached"] });
-    question.push({ srno: 3, question: "Select <span style='color: #018fc3'> Rotometer </span>", ans: "rotometer", hint: ["Rectangular", "Mounted Vertically", "Has valves attached"] });
-    question.push({ srno: 4, question: "Select <span style='color: #018fc3'>Test Section</span>", ans: "test_section", hint: ["Double Pipe", "pipe inside a pipe", "Has two inlets and outlets"] });
-    question.push({ srno: 5, question: "Select <span style='color: #018fc3'>Heater </span>", ans: "heater", hint: ["U-Shape", "Mounted horizontally", "Has two pins"] });
-    question.push({ srno: 6, question: "Select <span style='color: #018fc3'> Temperature Controller </span>", ans: "temp_controller", hint: ["Rectangular box with sensor", "Display SET T", "Has two wires protruding down"] });
-    question.push({ srno: 7, question: "Select <span style='color: #018fc3'> Temperature Indicator </span>", ans: "t_in", hint: ["Rectnagular box with sensor", "Horizontal", ""] });
-    question.push({ srno: 8, question: "Select <span style='color: #018fc3'> Verticle Pipe </span>", ans: "vertical_pipe", hint: ["Mounted Vertically", "Mounted Vertically", "Mounted Vertically"] });
-    question.push({ srno: 9, question: "Select <span style='color: #018fc3'> Horizontal Pipe </span>", ans: "horizontal_pipe", hint: ["Mounted Horizontally", "Mounted Horizontally", "Mounted Horizontally"] });
+    question.push({ srno: 1, question: "Select <span style='color: #018fc3'>Ballast Tank</span>", ans: "ballast_tank", hint: ["Has Suction and Discharge", "Has valve attached", "Triangular Base"] });
+    question.push({ srno: 2, question: "Select <span style='color: #018fc3'> Condenser </span>", ans: "condenser", hint: ["Rectangular", "Mounted Vertically", "Has valves attached"] });
+    question.push({ srno: 3, question: "Select <span style='color: #018fc3'> N2 Tank </span>", ans: "n2_tank", hint: ["Rectangular", "Mounted Vertically", "Has valves attached"] });
+    question.push({ srno: 4, question: "Select <span style='color: #018fc3'>Dimmer Stat</span>", ans: "dimmer_stat", hint: ["Double Pipe", "pipe inside a pipe", "Has two inlets and outlets"] });
+    question.push({ srno: 5, question: "Select <span style='color: #018fc3'>Connector</span>", ans: "connector", hint: ["U-Shape", "Mounted horizontally", "Has two pins"] });
+    question.push({ srno: 6, question: "Select <span style='color: #018fc3'> Temp Indicator </span>", ans: "temp_indicator", hint: ["Rectangular box with sensor", "Display SET T", "Has two wires protruding down"] });
+    question.push({ srno: 7, question: "Select <span style='color: #018fc3'> Ebulliometer </span>", ans: "ebulliometer", hint: ["Rectnagular box with sensor", "Horizontal", ""] });
 }
 function a1_display_current_question() {
     //document.getElementById("score-div-box").innerText = total_score.toString();
@@ -170,26 +161,22 @@ function a1_display_current_question() {
 }
 function load_higlighted_images() {
     highlighted_images = [
-        [tank_right, tank_wrong],
-        [pump_right, pump_wrong],
-        [test_section_right, test_section_wrong],
-        [horizontal_pipe_right, horizontal_pipe_wrong],
-        [vertical_pipe_right, vertical_pipe_wrong],
-        [rotometer_right, rotometer_wrong],
-        [heater_right, heater_wrong],
-        [temp_controller_right, temp_controller_wrong],
-        [t_in_right, t_in_wrong]
+        [ballast_tank, ballast_tank],
+        [condenser, condenser],
+        [n2_tank, n2_tank],
+        [dimmer_stat, dimmer_stat],
+        [connector, connector],
+        [temp_indicator, temp_indicator],
+        [ebulliometer, ebulliometer]
     ];
     a1_labels = [
-        new Chemistry.Text("tank", new Chemistry.Point(400, 80), canvas),
-        new Chemistry.Text("pump", new Chemistry.Point(1300, 1700), canvas),
-        new Chemistry.Text("test_section", new Chemistry.Point(1050, 730), canvas),
-        new Chemistry.Text("horizontal_pipe", new Chemistry.Point(200, 850), canvas),
-        new Chemistry.Text("vertical_pipe", new Chemistry.Point(100, 40), canvas),
-        new Chemistry.Text("rotometer", new Chemistry.Point(80, 500), canvas),
-        new Chemistry.Text("heater", new Chemistry.Point(1150, 480), canvas),
-        new Chemistry.Text("temp_controller", new Chemistry.Point(1000, 600), canvas),
-        new Chemistry.Text("t_in", new Chemistry.Point(600, 420), canvas),
+        new Chemistry.Text("ballast_tank", new Chemistry.Point(400, 80), canvas),
+        new Chemistry.Text("condenser", new Chemistry.Point(1300, 1700), canvas),
+        new Chemistry.Text("n2_tank", new Chemistry.Point(1050, 730), canvas),
+        new Chemistry.Text("dimmer_stat", new Chemistry.Point(200, 850), canvas),
+        new Chemistry.Text("connector", new Chemistry.Point(100, 40), canvas),
+        new Chemistry.Text("temp_indicator", new Chemistry.Point(80, 500), canvas),
+        new Chemistry.Text("ebulliometer", new Chemistry.Point(1150, 480), canvas),
     ];
 }
 function a1_random_questions() {
@@ -206,7 +193,7 @@ function a1_random_questions() {
         if (!found) {
             arrayofrandquestion.push(no);
         }
-        if (arrayofrandquestion.length >= 9) {
+        if (arrayofrandquestion.length >= 7) {
             break;
         }
     }
@@ -307,7 +294,7 @@ function a1_check_isinside(x, y) {
     }
 }
 function a1_change_question() {
-    if (current_question > 9) {
+    if (current_question > 7) {
         scene.draw();
         for (let j = 0; j < a1_index.length; j++) {
             a1_labels[a1_index[j]].draw();
@@ -353,4 +340,5 @@ function a1_mouseclick(e) {
     let y = Math.round((canvas.height - (e.clientY - rect.y)) / lscale);
     a1_check_isinside(x, y);
 }
+activity1();
 //# sourceMappingURL=activity1.js.map

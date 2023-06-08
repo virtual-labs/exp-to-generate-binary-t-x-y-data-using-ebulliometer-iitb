@@ -1,130 +1,104 @@
-var obtable_verified = false;
-// var button = `<button class="offcanvasbtn"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight1"><i class="bi bi-gear offcanvasicon"></i></button>`;
-var ob_btn = `<button id="panel1_btn" class="btn btn-primary" onclick="add_area_field();" style="
-position: absolute; bottom: 12vh; width: 85%;">Next</button>`;
-var ob_btn_0 = `<button id="panel1_btn" class="btn btn-primary" onclick="activity4();" style="
-position: absolute; bottom: 12vh; width: 85%;">Next</button>`;
-// pp.addtoleftpannel(table);
-// pp.addtoleftpannel("<br>");
-// pp.addtoleftpannel(table);
-// pp.addcanvas('activiy-1');
-// var canvas = pp.canvas;
+let random_temp = random(70, 95);
 function activity3() {
     pp.clearleftpannel();
-    //   pp.addtoleftpannel(button);
-    pp.showdescription('<p style="background-color: #f4ccccff; border-radius: 10px; border: black; padding: 5%; font-weight: 500; font-size: 2.5vw;">You get  <br> 5 points for correct calculation <br> 4 points for second attempt <br> 3 points for third attempt</p>', 3);
-    pp.showtitle("Select the Dimensions of the Setup", 3);
-    pp.showscore("100", 3);
-    var selection_table = `
+    pp.clearrightpannel();
+    pp.addoffcanvas(3);
+    pp.showtitle('Vapour Liquid Equilibrium', 3);
+    let dd_text = `
+    <div>
+    <label for="">Select the System</label>
+    <select id="name-dd" onchange="load_compositions();" class="form-select" name="" id="">
+        <option value="">--Select--</option>
+    </select>
 
-<br>
+    <br>
 
-<table class="table" style="height: 100%;">
-    <tbody id="first_table_body">
+    <label for="">Select the Composition</label>
+    <select id="composition-dd" onchange="set_values();" class="form-select" name="" id="">
+        <option value="">--Select--</option>
+    </select>
 
-      <tr>
-        <th style="font-size: calc(1.5vw + 10px); padding: 2%;" scope="row">Diameter of Test Speciment, d (cm)</th>
-        <td>
-        <select id="diameter" class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-        </select>
-        </td>
-      </tr>
+    <br>
 
-      <tr>
-      <th style="font-size: calc(1.5vw + 10px)" scope="row">Length of Heat Exchanger, L (cm)</th>
-      <td> 
-      <select id="ht_length" class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-       </select></td>
-    </tr>
+    <label for="">Dimmer Stat Reading</label>
+    <input onchange="show_temp_reading();" oninput="show_temp_reading();" id="dimmer-inp" type="range" min="0" max="100" step="1" value="0">
+    <label id="show-dimmer-reading"></label>
 
-    <tr>
-    <th style="font-size: calc(1.5vw + 10px)" scope="row">Metal</th>
-    <td>
-    <select onchange="set_values();" id="metal" class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-    </select></td>
-  </tr>
-     
-    </tbody>
-  </table>
+    <br>
 
-`;
-    pp.addtoleftpannel(selection_table);
+    <button id="dd-submit-btn" disabled class="btn btn-primary" onclick="activity4();">Submit</button>
+
+
+    </div>
+
+    `;
+    pp.addtoleftpannel(dd_text);
     load_options();
 }
-function set_values() {
-    pp.addtorightpannel(ob_btn, 3);
-    trigger_offcavnas();
-}
-function trigger_offcavnas() {
-    var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight3"));
-    bsOffcanvas.show();
-}
-function close_offcanvas() {
-    document.getElementById('hide_panel3').click();
-}
 function load_options() {
-    let first = document.getElementById('diameter');
-    let second = document.getElementById('ht_length');
-    let third = document.getElementById('metal');
-    first.innerHTML = ``;
-    second.innerHTML = ``;
-    third.innerHTML = ``;
-    for (let i = 0; i <= d_set.length; i++) {
-        if (i == 0) {
-            let op = `<option selected>Select the Diameter</option>`;
-            first.innerHTML += op;
-        }
-        else {
-            let op = `<option value="${d_set[i - 1]}">${d_set[i - 1]}</option>`;
-            first.innerHTML += op;
-        }
+    let sel = document.getElementById('name-dd');
+    for (let i = 0; i < data.length; i++) {
+        sel.innerHTML += `<option>${data[i].name}</option>`;
     }
-    for (let i = 0; i <= length_set.length; i++) {
-        if (i == 0) {
-            let op = `<option selected>Select the Length</option>`;
-            second.innerHTML += op;
-        }
-        else {
-            let op = `<option value="${length_set[i - 1]}">${length_set[i - 1]}</option>`;
-            second.innerHTML += op;
-        }
-    }
-    for (let i = 0; i <= metal_set.length; i++) {
-        if (i == 0) {
-            let op = `<option selected>Select the Metal</option>`;
-            third.innerHTML += op;
-        }
-        else {
-            let op = `<option value="${metal_set[i - 1]}">${metal_set[i - 1]}</option>`;
-            third.innerHTML += op;
+}
+function load_compositions() {
+    let sel0 = document.getElementById('name-dd');
+    let sel = document.getElementById('composition-dd');
+    sel.innerHTML = "";
+    for (let i = 0; i < data.length; i++) {
+        if (data[i].name == sel0.value) {
+            for (let j = 0; j < data[i].composition.length; j++) {
+                sel.innerHTML += `<option value="${j}">${data[i].composition[j]}</option>`;
+            }
+            break;
         }
     }
 }
-function add_area_field() {
-    document.getElementById('panel1_btn').remove();
-    pp.addtorightpannel(ob_btn_0, 3);
-    let first = document.getElementById('diameter');
-    let second = document.getElementById('ht_length');
-    let third = document.getElementById('metal');
-    metal = third.value;
-    console.log(third.value);
-    ht_length = parseFloat(second.value);
-    diameter = parseFloat(first.value);
-    cs_area = 0.0012;
-    console.log("dia =" + diameter);
-    console.log(diameter, ht_length, diameter);
-    first.disabled = true;
-    second.disabled = true;
-    third.disabled = true;
-    close_offcanvas();
-    let tr = document.createElement('tr');
-    tr.innerHTML = `
-  <th style="font-size: calc(1.5vw + 10px)" scope="row">Cross Sectional Area, A m<sup>2</sup></th>
-  <td><input disabled class="form-control" value="${cs_area}" type="text" name="" id="cs-area"></td>
-  `;
-    document.getElementById('first_table_body').append(tr);
+function set_values() {
+    let sel0 = document.getElementById('name-dd');
+    let sel = document.getElementById('composition-dd');
+    selected_name = sel0.value;
+    selected_index = parseInt(sel.value);
+    set_data(selected_name, selected_index);
+    add_std_deviation();
+}
+function show_temp_reading() {
+    let dimmer = document.getElementById('dimmer-inp');
+    let dimmer_reading = parseInt(dimmer.value);
+    if (dimmer_reading < random_temp) {
+        var temp = T * dimmer_reading / random_temp;
+    }
+    else {
+        var temp = T;
+    }
+    let label = document.getElementById('show-dimmer-reading');
+    let btn = document.getElementById("dd-submit-btn");
+    if (temp == T) {
+        //enable submit button, turn label to green
+        label.style.backgroundColor = 'green';
+        btn.disabled = false;
+    }
+    else {
+        label.style.backgroundColor = 'white';
+        btn.disabled = true;
+    }
+    // label value = temp
+    label.innerHTML = temp.toFixed(2);
+}
+function add_std_deviation() {
+    console.log(XX.length);
+    for (let i = 0; i < XX.length; i++) {
+        XX[i] = std_deviation(XX[i]);
+        YY[i] = std_deviation(YY[i]);
+        TT[i] = std_deviation(TT[i]);
+    }
+    for (let i = 0; i < table1.length; i++) {
+        for (let j = 0; j < table1[i].length; j++) {
+            table1[i][j] = std_deviation(table1[i][j]);
+        }
+    }
+    T = TT[selected_index];
+    X1 = XX[selected_index];
+    Y1 = YY[selected_index];
 }
 //# sourceMappingURL=activity3.js.map
