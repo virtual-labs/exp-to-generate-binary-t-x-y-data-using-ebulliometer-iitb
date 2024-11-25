@@ -538,6 +538,32 @@ var Chemistry;
         }
     }
     Chemistry.anim_image_x_dir = anim_image_x_dir;
+    class anim_image_x_rev_dir extends Custome_image {
+        constructor(image, stpt, width, height, canvas) {
+            super(image, stpt, width, height, canvas);
+            this.l = 290;
+            this.l_last = 525;
+            this.startx = 0;
+            this.width_last = 0;
+        }
+        draw() {
+            if (this.move_x) {
+                this.motion_x();
+            }
+            this.context.save();
+            this.context.translate(this.stpt.x * lscale, this.stpt.y * lscale);
+            this.context.scale(1, -1);
+            if (this.revolve) {
+                this.rotate();
+            }
+            this.context.drawImage(this.img, this.startx + this.width, this.dy - this.l, this.dx - this.width, this.dy, (-this.dx / 2 + this.startx + this.width) * lscale, (this.dy / 2 - this.l) * lscale, (this.dx - this.width) * lscale, this.dy * lscale);
+            if (this.width > this.width_last) {
+                this.width--;
+            }
+            this.context.restore();
+        }
+    }
+    Chemistry.anim_image_x_rev_dir = anim_image_x_rev_dir;
     class anim_image_y_dir_down extends Custome_image {
         constructor(image, stpt, width, height, canvas) {
             super(image, stpt, width, height, canvas);

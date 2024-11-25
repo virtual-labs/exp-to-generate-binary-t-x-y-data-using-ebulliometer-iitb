@@ -56,31 +56,42 @@ function activity6() {
     // first table
     let activity6_table_heading1 = ["Comp", "Mass", "Calculation Formula"];
     let verification_row_1 = [
-        [`Comp 1`, `<input type='text' class='form-control' id='mass-inp-1' />`, `AA / (AC * slope1)`],
-        [`Comp 2`, `<input type='text' class='form-control' id='mass-inp-2' />`, 'AB / (AC * slope2)']
+        [`Comp 1`, `<input style='font-size: 1.2vw;' type='text' class='form-control' id='mass-inp-1' />`, `AA / (AC * slope1)`],
+        [`Comp 2`, `<input  style='font-size: 1.2vw;' type='text' class='form-control' id='mass-inp-2' />`, 'AB / (AC * slope2)'],
+        ['', 'Moles', ''],
+        [`Comp 1`, `<input  style='font-size: 1.2vw;' type='text' class='form-control' id='moles-inp-1' />`, 'Mass of comp1 / M1'],
+        [`Comp 2`, `<input  style='font-size: 1.2vw;' type='text' class='form-control' id='moles-inp-2' />`, 'Mass of comp2 / M2'],
+        ['', 'Mole Fraction', ''],
+        [`Comp 1`, `<input type='text'  style='font-size: 1.2vw;' class='form-control' id='moles-fraction-inp-1' />`, 'Moles of comp1 / (Moles of comp1 + Moles of comp2)'],
+        [`Comp 2`, `<input type='text'  style='font-size: 1.2vw;' class='form-control' id='moles-fraction-inp-2' />`, '1 - Mole fraction of comp1']
     ];
     let act6_tb1 = new Table2(activity6_table_heading1, verification_row_1, "h-1", "b-1", "Mass");
     //seond table
-    let activity6_table_heading2 = ["Comp", "Moles", "Calculation Formula"];
-    let verification_row_2 = [
-        [`Comp 1`, `<input type='text' class='form-control' id='moles-inp-1' />`, 'mass_comp_1 / M1'],
-        [`Comp 2`, `<input type='text' class='form-control' id='moles-inp-2' />`, 'mass_comp_2 / M2']
-    ];
-    let act6_tb2 = new Table2(activity6_table_heading2, verification_row_2, "h-2", "b-2", "Moles");
+    // let activity6_table_heading2 = ["Comp", "Moles", "Calculation Formula"];
+    // let verification_row_2 = [
+    //     [`Comp 1`, `<input  style='font-size: 1.2vw;' type='text' class='form-control' id='moles-inp-1' />`, 'mass_comp_1 / M1'],
+    //     [`Comp 2`, `<input  style='font-size: 1.2vw;' type='text' class='form-control' id='moles-inp-2' />`, 'mass_comp_2 / M2']
+    // ];
+    // let act6_tb2 = new Table2(activity6_table_heading2, verification_row_2, "h-2", "b-2", "Moles");
     //third table
-    let activity6_table_heading3 = ["Comp", "Mole Fraction", "Calculation Formula"];
-    let verification_row_3 = [
-        [`Comp 1`, `<input type='text' class='form-control' id='moles-fraction-inp-1' />`, 'moles_comp_1 / (moles_comp_1 + moles_comp_2)'],
-        [`Comp 2`, `<input type='text' class='form-control' id='moles-fraction-inp-2' />`, '1 - moles_comp_1']
-    ];
-    let act6_tb3 = new Table2(activity6_table_heading3, verification_row_3, "h-3", "b-3", "Mole Fraction");
-    pp.addtoleftpannel(act6_tb1.template);
-    pp.addtoleftpannel(act6_tb2.template);
-    pp.addtoleftpannel(act6_tb3.template);
+    // let activity6_table_heading3 = ["Comp", "Mole Fraction", "Calculation Formula"];
+    // let verification_row_3 = [
+    //     [`Comp 1`, `<input type='text'  style='font-size: 1.2vw;' class='form-control' id='moles-fraction-inp-1' />`, 'moles_comp_1 / (moles_comp_1 + moles_comp_2)'],
+    //     [`Comp 2`, `<input type='text'  style='font-size: 1.2vw;' class='form-control' id='moles-fraction-inp-2' />`, '1 - moles_comp_1']
+    // ];
+    // let act6_tb3 = new Table2(activity6_table_heading3, verification_row_3, "h-3", "b-3", "Mole Fraction");
+    let wrapped_text = `
+        <div style='overflow: auto; height: 40vw;' >${act6_tb1.template}</div>
+    `;
+    pp.addtoleftpannel(wrapped_text);
+    // pp.addtoleftpannel(act6_tb2.template);
+    // pp.addtoleftpannel(act6_tb3.template);
     act6_tb1.draw();
-    act6_tb2.draw();
-    act6_tb3.draw();
-    let next_btn = `<button id="next_btn" class="btn btn-primary" style="text-align: center; margin-left: 45%;" onclick="verify_act6_inputs();">Verify</button>`;
+    // act6_tb2.draw();
+    // act6_tb3.draw();
+    let tab_ele = document.getElementById('tab2');
+    tab_ele.style.width = '80%';
+    let next_btn = `<button id="next_btn" class="btn btn-primary" style="position: absolute; top: 5vw; right: 9vw; text-align: center; margin-left: 45%; font-size: 1.2vw; width: 10vw;" onclick="verify_act6_inputs();">Verify</button>`;
     pp.addtoleftpannel(next_btn);
     console.log(mass_comp1, mass_comp2, moles_comp1, moles_comp2, moles_fraction_comp1, moles_fraction_comp2);
 }
@@ -91,6 +102,7 @@ function verify_act6_inputs() {
     let val4 = document.getElementById(`moles-inp-2`);
     let val5 = document.getElementById(`moles-fraction-inp-1`);
     let val6 = document.getElementById(`moles-fraction-inp-2`);
+    console.log(mass_comp1, mass_comp2, moles_comp1, moles_comp2, moles_fraction_comp1, moles_fraction_comp2);
     if (!verify_values(parseFloat(val1.value), mass_comp1)) {
         alert(`please check first Comp 1 value`);
         return;
@@ -118,4 +130,5 @@ function verify_act6_inputs() {
     alert("all values are right!!");
     activity7();
 }
+//activity6();
 //# sourceMappingURL=activity6.js.map
