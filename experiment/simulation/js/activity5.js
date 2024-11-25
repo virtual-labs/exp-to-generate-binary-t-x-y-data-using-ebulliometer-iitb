@@ -96,10 +96,6 @@ function draw_chart() {
                     borderColor: 'blue',
                     tension: 0.5,
                     showLine: false,
-                    // yAxisID: 'A',
-                    // borderWidth: 1,
-                    // borderColor: "green",
-                    // backgroundColor: "rgba(34, 139, 34, 0.5)",
                 },
                 {
                     label: 'Best Fit y = mx + c',
@@ -157,6 +153,7 @@ function slope_verify() {
     console.log(parseFloat(val1.value));
     // console.log(Q.value, To.value, Ti.value, ti.value, to.value);
     if (!verify_values(parseFloat(val1.value), slope1)) {
+        alert('please correct the slope value');
         console.log("please correct the slope value");
         return;
     }
@@ -254,10 +251,6 @@ function draw_chart_2() {
                     borderColor: 'blue',
                     tension: 0.5,
                     showLine: false,
-                    // yAxisID: 'A',
-                    // borderWidth: 1,
-                    // borderColor: "green",
-                    // backgroundColor: "rgba(34, 139, 34, 0.5)",
                 },
                 {
                     label: 'Best Fit y = mx + c',

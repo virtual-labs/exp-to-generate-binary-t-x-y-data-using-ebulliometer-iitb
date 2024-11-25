@@ -168,4 +168,5 @@ function calculate_last_table() {
     }
     console.log(calculated_table);
 }
+let side_table;
 //# sourceMappingURL=data.js.map

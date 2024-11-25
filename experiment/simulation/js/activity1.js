@@ -21,7 +21,7 @@ function start_act1() {
 function move_to_activity3() {
     document.getElementById('panel1_btn').remove();
     canvas.removeEventListener('click', a1_mouseclick);
-    activity3();
+    activity2();
 }
 //varibles related to activity 1
 var question = [];
@@ -102,25 +102,25 @@ function a1_canvas_mapping() {
     context.scale(1, -1);
 }
 function a1_draw_all_components() {
-    var sq = new Chemistry.Custome_image(ballast_tank, new Chemistry.Point(600, 200), 127, 317, canvas);
+    var sq = new Chemistry.Custome_image(ballast_tank, new Chemistry.Point(600, 400), 127, 317, canvas);
     sq.name = "ballast_tank";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(condenser, new Chemistry.Point(1450, 170), 64, 232, canvas);
+    var sq = new Chemistry.Custome_image(condenser, new Chemistry.Point(1450, 170), 64 * 1.2, 232 * 1.2, canvas);
     sq.name = "condenser";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(n2_tank, new Chemistry.Point(1650, 600), 75, 209, canvas);
+    var sq = new Chemistry.Custome_image(n2_tank, new Chemistry.Point(1650, 600), 75 * 2, 209 * 2, canvas);
     sq.name = "n2_tank";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(dimmer_stat, new Chemistry.Point(280, 830), 59, 59, canvas);
+    var sq = new Chemistry.Custome_image(dimmer_stat, new Chemistry.Point(280, 830), 59 * 2, 59 * 2, canvas);
     sq.name = "dimmer_stat";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(connector, new Chemistry.Point(150, 220), 44, 35, canvas);
+    var sq = new Chemistry.Custome_image(connector, new Chemistry.Point(150, 220), 44 * 2, 35 * 2, canvas);
     sq.name = "connector";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(temp_indicator, new Chemistry.Point(230, 580), 139, 90, canvas);
+    var sq = new Chemistry.Custome_image(temp_indicator, new Chemistry.Point(230, 580), 139 * 2, 90 * 2, canvas);
     sq.name = "temp_indicator";
     scene.add(sq);
-    var sq = new Chemistry.Custome_image(ebulliometer, new Chemistry.Point(1150, 400), 107, 273, canvas);
+    var sq = new Chemistry.Custome_image(ebulliometer, new Chemistry.Point(1150, 400), 107 * 2, 273 * 2, canvas);
     sq.name = "ebulliometer";
     scene.add(sq);
 }
@@ -170,14 +170,17 @@ function load_higlighted_images() {
         [ebulliometer, ebulliometer]
     ];
     a1_labels = [
-        new Chemistry.Text("ballast_tank", new Chemistry.Point(400, 80), canvas),
-        new Chemistry.Text("condenser", new Chemistry.Point(1300, 1700), canvas),
-        new Chemistry.Text("n2_tank", new Chemistry.Point(1050, 730), canvas),
-        new Chemistry.Text("dimmer_stat", new Chemistry.Point(200, 850), canvas),
-        new Chemistry.Text("connector", new Chemistry.Point(100, 40), canvas),
-        new Chemistry.Text("temp_indicator", new Chemistry.Point(80, 500), canvas),
-        new Chemistry.Text("ebulliometer", new Chemistry.Point(1150, 480), canvas),
+        new Chemistry.Geo_Text("ballast_tank", new Chemistry.Point(550, 200), canvas),
+        new Chemistry.Geo_Text("condenser", new Chemistry.Point(1500, 170), canvas),
+        new Chemistry.Geo_Text("n2_tank", new Chemistry.Point(1700, 400), canvas),
+        new Chemistry.Geo_Text("dimmer_stat", new Chemistry.Point(350, 830), canvas),
+        new Chemistry.Geo_Text("connector", new Chemistry.Point(150, 100), canvas),
+        new Chemistry.Geo_Text("temp_indicator", new Chemistry.Point(230, 500), canvas),
+        new Chemistry.Geo_Text("ebulliometer", new Chemistry.Point(1150, 50), canvas),
     ];
+    for (let i = 0; a1_labels.length; i++) {
+        a1_labels[i].font = '24%';
+    }
 }
 function a1_random_questions() {
     arrayofrandquestion = [];
@@ -311,7 +314,7 @@ function a1_change_question() {
         global_score = total_score;
         const act2 = document.createElement("input");
         act2.type = "button";
-        act2.onclick = activity3;
+        act2.onclick = activity2;
         //document.getElementById("root").appendChild(act2);
         act2.value = "Next";
         act2.className = "btn btn-success";

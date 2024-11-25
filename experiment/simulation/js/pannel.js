@@ -33,11 +33,11 @@ class Pannel {
 
         </div>
     </div>
-    <button class="offcanvasbtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight${id}" aria-controls="offcanvasRight${id}" style="width: 4%;"><i class="bi bi-gear offcanvasicon" style="font-size: calc(1vw + 12px);"></i></button>
+    <button class="offcanvasbtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight${id}" aria-controls="offcanvasRight${id}" style="width: 4%;"><i class="bi bi-arrow-bar-left"></i></button>
       <br>  `;
     }
     addcanvas(canvasid) {
-        this.leftpannel.innerHTML = `<canvas id="${canvasid}"></canvas>`;
+        this.leftpannel.innerHTML += `<canvas id="${canvasid}"></canvas>`;
         this.canvas = document.getElementById(canvasid);
     }
     addtoleftpannel(component) {
@@ -112,7 +112,7 @@ class Table1 extends Table {
         this.bodyid = bodyid;
         this.headid = headid;
         this.template = `    
-        <table class="table" style="height: 100%">
+        <table class="table tab-4" style="height: 100%">
             <thead>
                 <tr id="first_heading">
                 <th colspan="3" style="text-align: center;">Mass(gm)</th>
@@ -152,7 +152,8 @@ class Table2 extends Table1 {
     constructor(heading_column, data, headid, bodyid, tabletitle) {
         super(heading_column, data, headid, bodyid);
         this.template = `    
-        <table class="table">
+        <div class='table-responsive'>
+        <table class="table" style='font-size: 1.4vw;' id='tab2'>
             <thead>
                 <tr id="first_heading">
                 <th colspan="3" style="text-align: center;">${tabletitle}</th>
@@ -167,7 +168,7 @@ class Table2 extends Table1 {
             <tbody id="${this.bodyid}">
             
             </tbody>
-        </table>`;
+        </table> </div>`;
     }
 }
 //# sourceMappingURL=pannel.js.map

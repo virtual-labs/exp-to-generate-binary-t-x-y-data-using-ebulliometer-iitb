@@ -1,4 +1,7 @@
 function verify_values(value, truevalue) {
+    if (value == 0 && truevalue == 0) {
+        return false;
+    }
     let calculated_value = (truevalue - value) / truevalue * 100;
     if (calculated_value <= 4 && calculated_value >= -4) {
         return true;
@@ -105,6 +108,14 @@ function gauss(a, c) {
         x[i] = sum / a[i][i];
     }
     return (x);
+}
+function show_oc3() {
+    var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight3"));
+    bsOffcanvas.show();
+}
+function show_oc4() {
+    var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight4"));
+    bsOffcanvas.show();
 }
 // x1 = 1/T
 // x2 = ln(P)/T
