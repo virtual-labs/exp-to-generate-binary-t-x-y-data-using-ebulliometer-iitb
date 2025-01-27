@@ -1,11 +1,45 @@
 [
     {
-        "question": "Sample Question",
+        "question": "Why purging is necessary before starting experiment?",
         "qid": 1,
-        "option_a": "Option A",
-        "option_b": "Option B",
-        "option_c": "Option C",
-        "option_d": "Option D",
+        "option_a": "To remove contamination",
+        "option_b": "To remove air",
+        "option_c": "To maintain pressure",
+        "option_d": "To check leakage",
         "correct_option": "a"
+    },
+
+    {
+        "question": "What condition indicates that you should stop increasing the heating rate?",
+        "qid": 2,
+        "option_a": "When the pressure reaches maximum",
+        "option_b": "When the cold-water temperature stabilizes",
+        "option_c": "When small increments in heating rate don't raise the temperature",
+        "option_d": "When temperature start rising",
+        "correct_option": "c"
+    },
+
+    {
+        "question": "Which analytical technique is implemented to identify composition.",
+        "qid": 3,
+        "option_a": "UV analysis",
+        "option_b": "HPLC",
+        "option_c": "GC",
+        "option_d": "Titration",
+        "correct_option": "c"
+    },
+
+    {
+        "question": "What will be the allowable R 2 value during calibration.",
+        "qid": 4,
+        "option_a": "Less than 0.9",
+        "option_b": "Greater than 0.9",
+        "option_c": "Greater than 0.99",
+        "option_d": "Equal = 0",
+        "correct_option": "c"
     }
 ]
+
+
+
+
