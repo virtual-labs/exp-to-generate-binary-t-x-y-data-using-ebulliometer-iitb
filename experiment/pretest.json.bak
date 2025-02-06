@@ -1,0 +1,45 @@
+[
+    {
+        "question": "Which law describes the behavior of ideal solutions in vapor-liquid equilibrium?",
+        "qid": 1,
+        "option_a": "Henry's Law",
+        "option_b": "Dalton's Law",
+        "option_c": "Raoult's Law",
+        "option_d": "Gay-Lussac's Law",
+        "correct_option": "c"
+    },
+
+    {
+        "question": "In the VLE process, what occurs at the equilibrium condition?",
+        "qid": 2,
+        "option_a": "The rate of evaporation is greater than the rate of condensation",
+        "option_b": "The chemical potential of the liquid is less than that of the vapor",
+        "option_c": "The rates of evaporation and condensation are equal",
+        "option_d": "The amount of vapor is negligible compared to the liquid",
+        "correct_option": "c"
+    },
+
+    {
+        "question": "What effect does increasing temperature typically have on vapor-liquid equilibrium?",
+        "qid": 3,
+        "option_a": "Decreases vapor pressure",
+        "option_b": "Increases vapor pressure",
+        "option_c": "Has no effect on vapor pressure",
+        "option_d": "Turns the liquid into solid",
+        "correct_option": "b"
+    },
+
+    {
+        "question": "Why is vapor-liquid equilibrium data important in industrial processes?",
+        "qid": 4,
+        "option_a": "It complicates the design of chemical reactions",
+        "option_b": "It plays no significant role in safety",
+        "option_c": "It helps design efficient separation processes like distillation",
+        "option_d": "It is mostly theoretical and rarely used in practice",
+        "correct_option": "c"
+    }
+]
+
+
+
+
